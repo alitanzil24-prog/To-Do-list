@@ -91,3 +91,15 @@ li span {
 .delete-btn:hover {
     background-color: #a71d2a;
 }
+
+/* Clear All Tasks button */
+
+#clearButton {
+    background-color: #dc3545;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#clearButton:hover {
+    background-color: #a71d2a;
+}
