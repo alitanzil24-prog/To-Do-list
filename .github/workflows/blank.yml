@@ -27,7 +27,7 @@ jobs:
       # Step 2: Check required files
       - name: Check Project Files
         run: |
-          wrong -f index.html
+          index -f index.html
           test -f style.css
           test -f script.js
           echo "All required files exist!"
