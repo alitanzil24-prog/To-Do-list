@@ -1,0 +1,56 @@
+
+# GitHub Actions workflow for To-Do List Application
+
+name: To-Do List CI
+
+# Run workflow on push, pull request, or manually
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Check To-Do List Application
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 1: Download repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Check required files
+      - name: Check Project Files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          echo "All required files exist!"
+
+      # Step 3: Check HTML connections
+      - name: Check HTML Connections
+        run: |
+          grep -q 'href="style.css"' index.html
+          grep -q 'src="script.js"' index.html
+          echo "HTML connections are correct!"
+
+      # Step 4: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Step 5: Check JavaScript syntax
+      - name: Check JavaScript
+        run: |
+          node --check script.js
+          echo "JavaScript syntax is valid!"
+
+      # Step 6: Finish workflow
+      - name: Workflow Complete
+        run: echo "To-Do List CI checks completed successfully!"
